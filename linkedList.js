@@ -28,6 +28,15 @@ class LinkedList{
         this.size++;
     }
 
+    size(){
+        let currentNode = this.head;
+        let count = 0;
+        while(currentNode){
+            count++;
+        }
+        return count;
+    }
+
     at(index){//returns the value of node at specified index
         let currentNode = this.head;
         let count = 0
@@ -128,6 +137,7 @@ linkedList.prepend(200);
 linkedList.prepend(300);
 linkedList.prepend(400);
 
-linkedList.removeAt(2);
+// linkedList.removeAt(2);
 
 linkedList.printList();
+console.log(size());
