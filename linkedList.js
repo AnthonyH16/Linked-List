@@ -28,15 +28,32 @@ class LinkedList{
         this.size++;
     }
 
-    size(){
+    totalNodes(){
         let currentNode = this.head;
         let count = 0;
         while(currentNode){
             count++;
+            currentNode = currentNode.next;
         }
+        console.log(count);
         return count;
     }
 
+    whatIsTheHead(){
+        let currentNode = this.head;
+
+        console.log(currentNode);
+    }
+
+    gimmeThatTail(){        
+        let currentNode = this.head;
+        while(currentNode){            
+            if (currentNode.next == null){
+                console.log(currentNode);
+            }
+            currentNode = currentNode.next;
+        }
+    }
     at(index){//returns the value of node at specified index
         let currentNode = this.head;
         let count = 0
@@ -48,6 +65,61 @@ class LinkedList{
             currentNode = currentNode.next;            
         }
         return null;
+    }
+    pop(){
+        let currentNode = this.head;
+        let previousNode;
+        while(currentNode){
+            if (currentNode.next == null){
+                previousNode.next = currentNode.next;
+            }
+            previousNode = currentNode;
+            currentNode = currentNode.next;
+        }
+    }
+
+    contains(value){
+        let currentNode = this.head;
+        let isIt = false
+        while(currentNode){
+            if(currentNode.value === value){
+                isIt = true
+            }
+            currentNode = currentNode.next;
+        }
+        console.log(isIt);
+    }
+
+    findIndex(value){//returns index of node containing value, if found. Returns null otherwise.
+        let currentNode = this.head;
+        let count = 0;
+        while(currentNode){
+            if(currentNode.value === value){
+                console.log(count);
+                return
+            }
+            else if(count == this.size - 1 && currentNode.value !== value){                
+                console.log(null);
+                return null;
+            }
+            count++
+            currentNode = currentNode.next;
+        }
+        
+    }
+
+    toString(){
+        let currentNode = this.head;
+        let allNodes =[];
+        while(currentNode){
+            allNodes.push(`${currentNode.value}`);            
+            currentNode = currentNode.next;
+        }
+        let nodesWithJoin = allNodes.join('->');
+        console.log(nodesWithJoin);
+        return nodesWithJoin;
+        
+        
     }
 
     insertAt(value, index){
@@ -140,4 +212,14 @@ linkedList.prepend(400);
 // linkedList.removeAt(2);
 
 linkedList.printList();
-console.log(size());
+// console.log(linkedList.totalNodes());
+// linkedList.totalNodes();
+// linkedList.whatIsTheHead();
+// linkedList.gimmeThatTail();
+
+// linkedList.pop();
+// linkedList.printList();
+// linkedList.gimmeThatTail();
+// linkedList.contains(20);
+// linkedList.findIndex(20);
+linkedList.toString();
